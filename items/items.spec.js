@@ -17,13 +17,25 @@ test('enhancing success increases enhancing level', () => {
   const item = new items('name', itemTypes.WEAPON); // default dura = 100, enhance = 0
 
   // act - execute SUT (System Under Test)
-  const actual = enhancer.succeed(item); // increase the item's enhance by 1
+  const actual = enhancer.success(item); // increase the item's enhance by 1
 
   // assert
-  expect(actual).toEqual(actual.enhancementVal + 1);
+  expect(actual.enhancementVal).toEqual(actual.enhancementVal + 1);
 });
 
-// it('should repair durability', () => {
+test('enhancing an armor at level <= 5 OR enhancing a weapon at level <= 7 should succeed', () => {
+  const armor = new items('genericArmor', itemTypes.ARMOR, 100, 5);
+  const weapon = new items('genericWeapon', itemTypes.WEAPON, 100, 7);
+
+  const actualArmor = enhancer.success(armor);
+
+  const actualWeapon = enhancer.success(weapon);
+
+  expect(actualWeapon.enhancementVal).toEqual(weapon.enhancementVal + 1);
+  expect(actualArmor.enhancementVal).toEqual(armor.enhancementVal + 1);
+});
+
+// test('should repair durability', () => {
 //   const actual = enhancer.repair({ durability: 0 });
 
 //   expect(actual.durability).toBe(100);

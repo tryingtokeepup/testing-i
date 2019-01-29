@@ -1,14 +1,24 @@
 module.exports = {
   success,
-  fail
+  fail,
+  repair
 };
 
-const items = require('../items/items');
-//const itemTypes = require('./itemTypes');
-
 function success(item) {
-  const item = new items('name', itemTypes.WEAPON);
-  if (item.enhancementVal < 10) {
-    enhancementVal + 1;
+  if (item.enhancementVal <= 5 && item.itemTypes === 'ARMOR') {
+    item.enhancementVal + 1;
+    return item;
+  }
+  if (item.enhancementValu <= 7 && item.itemTypes === 'WEAPON') {
+    item.enhancementVal + 1;
+    return item;
+  }
+}
+
+function fail(item) {}
+
+function repair(item) {
+  if (item.durability < 100) {
+    return (item.durability = 100);
   }
 }
