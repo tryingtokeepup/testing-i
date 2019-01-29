@@ -18,19 +18,19 @@ test('enhancing success increases enhancing level', () => {
   console.log('item console', item);
 
   // act - execute SUT (System Under Test)
-  const actual = enhancer.success(item); // increase the item's enhance by 1
-
+  const actual = enhancer.success({ ...item }); // increase the item's enhance by 1
+  console.log(actual);
   // assert
-  expect(actual.enhancementVal).toEqual(actual.enhancementVal + 1);
+  expect(actual.enhancementVal).toEqual(item.enhancementVal + 1);
 });
 
 test('enhancing an armor at level <= 5 OR enhancing a weapon at level <= 7 should succeed', () => {
   const armor = new items('genericArmor', itemTypes.ARMOR, 100, 5);
   const weapon = new items('genericWeapon', itemTypes.WEAPON, 100, 7);
 
-  const actualArmor = enhancer.success(armor);
+  const actualArmor = enhancer.success({ ...armor });
 
-  const actualWeapon = enhancer.success(weapon);
+  const actualWeapon = enhancer.success({ ...weapon });
 
   expect(actualWeapon.enhancementVal).toEqual(weapon.enhancementVal + 1);
   expect(actualArmor.enhancementVal).toEqual(armor.enhancementVal + 1);
