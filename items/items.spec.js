@@ -15,6 +15,7 @@ test('item should have a name, a type, durability, and enhancement value', () =>
 test('enhancing success increases enhancing level', () => {
   // arrange - setup
   const item = new items('name', itemTypes.WEAPON); // default dura = 100, enhance = 0
+  console.log('item console', item);
 
   // act - execute SUT (System Under Test)
   const actual = enhancer.success(item); // increase the item's enhance by 1

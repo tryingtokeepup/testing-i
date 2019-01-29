@@ -5,12 +5,13 @@ module.exports = {
 };
 
 function success(item) {
-  if (item.enhancementVal <= 5 && item.itemTypes === 'ARMOR') {
-    item.enhancementVal + 1;
+  if (item.enhancementVal <= 5 && item.type === 'ARMOR') {
+    item.enhancementVal += 1;
     return item;
   }
-  if (item.enhancementValu <= 7 && item.itemTypes === 'WEAPON') {
-    item.enhancementVal + 1;
+  if (item.enhancementVal <= 7 && item.type === 'WEAPON') {
+    item.enhancementVal += 1;
+    console.log('console ITEM', item);
     return item;
   }
 }
